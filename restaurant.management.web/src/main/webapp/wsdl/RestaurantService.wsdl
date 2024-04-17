@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.web.management.restaurant" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.web.management.restaurant" xmlns:intf="http://service.web.management.restaurant" xmlns:tns1="http://data.web.management.restaurant" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.web.management.restaurant" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://data.web.management.restaurant"/>
+   <element name="getRestaurant_BD_Name">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getRestaurant_BD_NameResponse">
+    <complexType>
+     <sequence>
+      <element name="getRestaurant_BD_NameReturn" type="tns1:Restaurant"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchRestaurantsByCate">
+    <complexType>
+     <sequence>
+      <element name="cate" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchRestaurantsByCateResponse">
+    <complexType>
+     <sequence>
+      <element name="searchRestaurantsByCateReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="getRestaurant_BD_Id">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getRestaurant_BD_IdResponse">
+    <complexType>
+     <sequence>
+      <element name="getRestaurant_BD_IdReturn" type="tns1:Restaurant"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRestaurant">
+    <complexType>
+     <sequence>
+      <element name="r" type="tns1:Restaurant"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRestaurantResponse">
+    <complexType>
+     <sequence>
+      <element name="addRestaurantReturn" type="tns1:Restaurant"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllRestaurants">
+    <complexType/>
+   </element>
+   <element name="getAllRestaurantsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllRestaurantsReturn" type="tns1:Restaurant"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCategory">
+    <complexType>
+     <sequence>
+      <element name="category" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="addCategoryReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://data.web.management.restaurant" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.web.management.restaurant"/>
+   <complexType name="Restaurant">
+    <sequence>
+     <element name="adresse" nillable="true" type="xsd:string"/>
+     <element name="cateId" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="latitude" type="xsd:double"/>
+     <element name="longitude" type="xsd:double"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Category">
+    <sequence>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addRestaurantResponse">
+
+      <wsdl:part element="impl:addRestaurantResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryRequest">
+
+      <wsdl:part element="impl:addCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchRestaurantsByCateRequest">
+
+      <wsdl:part element="impl:searchRestaurantsByCate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRestaurant_BD_NameRequest">
+
+      <wsdl:part element="impl:getRestaurant_BD_Name" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryResponse">
+
+      <wsdl:part element="impl:addCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllRestaurantsResponse">
+
+      <wsdl:part element="impl:getAllRestaurantsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRestaurantRequest">
+
+      <wsdl:part element="impl:addRestaurant" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRestaurant_BD_NameResponse">
+
+      <wsdl:part element="impl:getRestaurant_BD_NameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchRestaurantsByCateResponse">
+
+      <wsdl:part element="impl:searchRestaurantsByCateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRestaurant_BD_IdResponse">
+
+      <wsdl:part element="impl:getRestaurant_BD_IdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllRestaurantsRequest">
+
+      <wsdl:part element="impl:getAllRestaurants" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRestaurant_BD_IdRequest">
+
+      <wsdl:part element="impl:getRestaurant_BD_Id" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="RestaurantService">
+
+      <wsdl:operation name="getRestaurant_BD_Name">
+
+         <wsdl:input message="impl:getRestaurant_BD_NameRequest" name="getRestaurant_BD_NameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getRestaurant_BD_NameResponse" name="getRestaurant_BD_NameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchRestaurantsByCate">
+
+         <wsdl:input message="impl:searchRestaurantsByCateRequest" name="searchRestaurantsByCateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchRestaurantsByCateResponse" name="searchRestaurantsByCateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRestaurant_BD_Id">
+
+         <wsdl:input message="impl:getRestaurant_BD_IdRequest" name="getRestaurant_BD_IdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getRestaurant_BD_IdResponse" name="getRestaurant_BD_IdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRestaurant">
+
+         <wsdl:input message="impl:addRestaurantRequest" name="addRestaurantRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addRestaurantResponse" name="addRestaurantResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRestaurants">
+
+         <wsdl:input message="impl:getAllRestaurantsRequest" name="getAllRestaurantsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllRestaurantsResponse" name="getAllRestaurantsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdl:input message="impl:addCategoryRequest" name="addCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCategoryResponse" name="addCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RestaurantServiceSoapBinding" type="impl:RestaurantService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getRestaurant_BD_Name">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRestaurant_BD_NameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRestaurant_BD_NameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchRestaurantsByCate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchRestaurantsByCateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchRestaurantsByCateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRestaurant_BD_Id">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRestaurant_BD_IdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRestaurant_BD_IdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRestaurant">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRestaurantRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addRestaurantResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRestaurants">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllRestaurantsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllRestaurantsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RestaurantServiceService">
+
+      <wsdl:port binding="impl:RestaurantServiceSoapBinding" name="RestaurantService">
+
+         <wsdlsoap:address location="http://localhost:8082/restaurant.management.web/services/RestaurantService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

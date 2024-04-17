@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:tns="http://restaurant.management.soap" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  targetNamespace="http://restaurant.management.soap">
+
+    <wsdl:types>
+        <xsd:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                    xmlns:tns="http://restaurant.management.soap" 
+                    targetNamespace="http://restaurant.management.soap" 
+                    elementFormDefault="qualified" 
+                    attributeFormDefault="unqualified">
+            <xsd:import namespace="http://restaurant.management.soap" schemaLocation="restaurantsoapservice_schema2.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getAllRestaurantsRequest">
+        <wsdl:part name="parameters" element="tns:getAllRestaurants"/>
+    </wsdl:message>
+    <wsdl:message name="getAllRestaurantsResponse">
+        <wsdl:part name="parameters" element="tns:getAllRestaurantsResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getRestaurantByIdRequest">
+        <wsdl:part name="parameters" element="tns:getRestaurantById"/>
+    </wsdl:message>
+    <wsdl:message name="getRestaurantByIdResponse">
+        <wsdl:part name="parameters" element="tns:getRestaurantByIdResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getRestaurantByNameRequest">
+        <wsdl:part name="parameters" element="tns:getRestaurantByName"/>
+    </wsdl:message>
+    <wsdl:message name="getRestaurantByNameResponse">
+        <wsdl:part name="parameters" element="tns:getRestaurantByNameResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getRestaurantsByCategoryRequest">
+        <wsdl:part name="parameters" element="tns:getRestaurantsByCategory"/>
+    </wsdl:message>
+    <wsdl:message name="getRestaurantsByCategoryResponse">
+        <wsdl:part name="parameters" element="tns:getRestaurantsByCategoryResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="addRestaurantRequest">
+        <wsdl:part name="parameters" element="tns:addRestaurant"/>
+    </wsdl:message>
+    <wsdl:message name="addRestaurantResponse">
+        <wsdl:part name="parameters" element="tns:addRestaurantResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="addCategoryRequest">
+        <wsdl:part name="parameters" element="tns:addCategory"/>
+    </wsdl:message>
+    <wsdl:message name="addCategoryResponse">
+        <wsdl:part name="parameters" element="tns:addCategoryResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="RestaurantSoapServicePortType">
+        <wsdl:operation name="getAllRestaurants">
+            <wsdl:input message="tns:getAllRestaurantsRequest"/>
+            <wsdl:output message="tns:getAllRestaurantsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getRestaurantById">
+            <wsdl:input message="tns:getRestaurantByIdRequest"/>
+            <wsdl:output message="tns:getRestaurantByIdResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getRestaurantByName">
+            <wsdl:input message="tns:getRestaurantByNameRequest"/>
+            <wsdl:output message="tns:getRestaurantByNameResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getRestaurantsByCategory">
+            <wsdl:input message="tns:getRestaurantsByCategoryRequest"/>
+            <wsdl:output message="tns:getRestaurantsByCategoryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addRestaurant">
+            <wsdl:input message="tns:addRestaurantRequest"/>
+            <wsdl:output message="tns:addRestaurantResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addCategory">
+            <wsdl:input message="tns:addCategoryRequest"/>
+            <wsdl:output message="tns:addCategoryResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="RestaurantSoapServiceBinding" type="tns:RestaurantSoapServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllRestaurants">
+            <soap:operation soapAction="http://restaurant.management.soap/getAllRestaurants"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!-- Additional operations -->
+    </wsdl:binding>
+
+    <wsdl:service name="RestaurantService">
+        <wsdl:port name="RestaurantSoapServicePort" binding="tns:RestaurantSoapServiceBinding">
+            <soap:address location="http://localhost:8080/restaurant.management.soap/services/RestaurantSoapService"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

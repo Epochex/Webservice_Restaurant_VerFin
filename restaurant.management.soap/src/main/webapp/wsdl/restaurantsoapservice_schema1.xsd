@@ -1,0 +1,99 @@
+<xs:schema xmlns:ns1="http://restaurant.management.soap" xmlns:tns="http://soap.management.restaurant/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soap.management.restaurant/" version="1.0">
+
+  <xs:import namespace="http://restaurant.management.soap" schemaLocation="restaurantsoapservice_schema2.xsd"/>
+
+  <xs:element name="addCategory" type="tns:addCategory"/>
+
+  <xs:element name="addCategoryResponse" type="tns:addCategoryResponse"/>
+
+  <xs:element name="addRestaurant" type="tns:addRestaurant"/>
+
+  <xs:element name="addRestaurantResponse" type="tns:addRestaurantResponse"/>
+
+  <xs:element name="getAllRestaurants" type="tns:getAllRestaurants"/>
+
+  <xs:element name="getAllRestaurantsResponse" type="tns:getAllRestaurantsResponse"/>
+
+  <xs:element name="getRestaurantById" type="tns:getRestaurantById"/>
+
+  <xs:element name="getRestaurantByIdResponse" type="tns:getRestaurantByIdResponse"/>
+
+  <xs:element name="getRestaurantByName" type="tns:getRestaurantByName"/>
+
+  <xs:element name="getRestaurantByNameResponse" type="tns:getRestaurantByNameResponse"/>
+
+  <xs:element name="getRestaurantsByCategory" type="tns:getRestaurantsByCategory"/>
+
+  <xs:element name="getRestaurantsByCategoryResponse" type="tns:getRestaurantsByCategoryResponse"/>
+
+  <xs:complexType name="getAllRestaurants">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllRestaurantsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="category" type="ns1:category"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addCategoryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:category"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantsByCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="category" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantsByCategoryResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addRestaurant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="restaurant" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addRestaurantResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getRestaurantByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:restaurant"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

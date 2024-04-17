@@ -1,0 +1,161 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RestaurantServiceService WSDL service -->
+
+  <service name="RestaurantService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.web.management.restaurant"/>
+      <parameter name="wsdlServiceElement" value="RestaurantServiceService"/>
+      <parameter name="schemaQualified" value="http://service.web.management.restaurant,http://data.web.management.restaurant"/>
+      <parameter name="wsdlServicePort" value="RestaurantService"/>
+      <parameter name="className" value="restaurant.management.web.service.RestaurantServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="RestaurantService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getRestaurant_BD_Name" qname="operNS:getRestaurant_BD_Name" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:getRestaurant_BD_NameReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:Restaurant" xmlns:rtns="http://data.web.management.restaurant" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://service.web.management.restaurant" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="searchRestaurantsByCate" qname="operNS:searchRestaurantsByCate" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:searchRestaurantsByCateReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://service.web.management.restaurant" returnItemQName="tns:item" xmlns:tns="http://service.web.management.restaurant" soapAction="" >
+        <parameter qname="pns:cate" xmlns:pns="http://service.web.management.restaurant" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getRestaurant_BD_Id" qname="operNS:getRestaurant_BD_Id" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:getRestaurant_BD_IdReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:Restaurant" xmlns:rtns="http://data.web.management.restaurant" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.web.management.restaurant" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addRestaurant" qname="operNS:addRestaurant" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:addRestaurantReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:Restaurant" xmlns:rtns="http://data.web.management.restaurant" soapAction="" >
+        <parameter qname="pns:r" xmlns:pns="http://service.web.management.restaurant" type="tns:Restaurant" xmlns:tns="http://data.web.management.restaurant"/>
+      </operation>
+      <operation name="getAllRestaurants" qname="operNS:getAllRestaurants" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:getAllRestaurantsReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:Restaurant" xmlns:rtns="http://data.web.management.restaurant" soapAction="" >
+      </operation>
+      <operation name="addCategory" qname="operNS:addCategory" xmlns:operNS="http://service.web.management.restaurant" returnQName="retNS:addCategoryReturn" xmlns:retNS="http://service.web.management.restaurant" returnType="rtns:Category" xmlns:rtns="http://data.web.management.restaurant" soapAction="" >
+        <parameter qname="pns:category" xmlns:pns="http://service.web.management.restaurant" type="tns:Category" xmlns:tns="http://data.web.management.restaurant"/>
+      </operation>
+      <parameter name="allowedMethods" value="searchRestaurantsByCate getRestaurant_BD_Name addRestaurant getRestaurant_BD_Id getAllRestaurants addCategory"/>
+
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>searchRestaurantsByCate"
+        type="java:restaurant.management.web.service.SearchRestaurantsByCate"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getRestaurant_BD_Id"
+        type="java:restaurant.management.web.service.GetRestaurant_BD_Id"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>addCategory"
+        type="java:restaurant.management.web.service.AddCategory"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>addCategoryResponse"
+        type="java:restaurant.management.web.service.AddCategoryResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getAllRestaurantsResponse"
+        type="java:restaurant.management.web.data.Restaurant[]"
+        innerType="cmp-ns:Restaurant" xmlns:cmp-ns="http://data.web.management.restaurant"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://data.web.management.restaurant"
+        qname="ns:Category"
+        type="java:restaurant.management.web.data.Category"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>searchRestaurantsByCateResponse"
+        type="java:restaurant.management.web.service.SearchRestaurantsByCateResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getRestaurant_BD_IdResponse"
+        type="java:restaurant.management.web.service.GetRestaurant_BD_IdResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getRestaurant_BD_Name"
+        type="java:restaurant.management.web.service.GetRestaurant_BD_Name"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>addRestaurantResponse"
+        type="java:restaurant.management.web.service.AddRestaurantResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>addRestaurant"
+        type="java:restaurant.management.web.service.AddRestaurant"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getRestaurant_BD_NameResponse"
+        type="java:restaurant.management.web.service.GetRestaurant_BD_NameResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:>getAllRestaurants"
+        type="java:restaurant.management.web.service.GetAllRestaurants"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://service.web.management.restaurant"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://data.web.management.restaurant"
+        qname="ns:Restaurant"
+        type="java:restaurant.management.web.data.Restaurant"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
