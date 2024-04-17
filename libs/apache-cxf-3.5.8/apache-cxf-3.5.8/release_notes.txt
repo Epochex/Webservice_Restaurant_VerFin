@@ -1,0 +1,100 @@
+Apache CXF 3.5.8 Release Notes
+
+1. Overview
+
+The 3.5.x versions of Apache CXF is a significant new version of CXF
+that provides several new features and enhancements.  
+
+New features include:
+* Support for Java 17
+* Many updated dependencies.  We've updated to the latest versions of most
+  dependencies.  Some may be incompatible with previous versions.
+  Some notables that may impact applications include:
+    * ehCache upgraded to 3.9.x
+    * Jackson to 2.13.x
+    * Mozilla Rhino upgraded to 1.7.13 (groupId/artifactId changed, be careful)
+    * WSS4j 2.4.x
+    * Spring Boot 2.6.x / Spring Framework 5.3.x base line
+    * Apache Karaf 4.3.x base line
+    * Apache HttpClient 5 support (Asynchronous Client HTTP Transport)
+    * HTTP/2 support (server-side only)
+    * JUnit 5 support
+
+Important notes:
+* 3.5 is the last branch of CXF that will support Java 8.   Future
+  non-patch releases of CXF will require Java 11 or newer.
+* The old OATH 1.0 module was removed
+
+Users are encouraged to review the migration guide at:
+http://cxf.apache.org/docs/34-migration-guide.html
+for further information and requirements for upgrading from earlier
+versions of CXF.
+
+
+3.5.8 fixes over 13 JIRA issues reported by users and the community.
+
+
+2. Installation Prerequisites 
+
+Before installing Apache CXF, make sure the following products,
+with the specified versions, are installed on your system:
+
+    * Java 8 Development Kit
+    * Apache Maven 3.x to build the samples
+
+
+3.  Integrating CXF Into Your Application
+
+If you use Maven to build your application, you need merely add
+appropriate dependencies. See the pom.xml files in the samples.
+
+If you don't use Maven, you'll need to add one or more jars to your
+classpath. The file lib/WHICH_JARS should help you decide which 
+jars you need.
+
+4. Building the Samples
+
+Building the samples included in the binary distribution is easy. Change to
+the samples directory and follow the build instructions in the README.txt file 
+included with each sample.
+
+5. Reporting Problems
+
+If you have any problems or want to send feedback of any kind, please e-mail the
+CXF dev list, dev@cxf.apache.org.  You can also file issues in JIRA at:
+
+http://issues.apache.org/jira/browse/CXF
+
+6. Migration notes:
+
+See the migration guide at:
+http://cxf.apache.org/docs/35-migration-guide.html
+for caveats when upgrading.
+
+7. Specific issues, features, and improvements fixed in this version
+
+** Bug
+    * [CXF-8812] - Content-Type header created with collection containing "null" value
+    * [CXF-8834] - "Operation [{.../wsdl}Issue] already exists" when calling JaxWsServerFactoryBean.create() for SecurityTokenService
+    * [CXF-8939] - java.lang.NullPointerException: Cannot invoke "java.util.List.size()" because the return value of "java.util.Map$Entry.getValue()" is null
+    * [CXF-8940] - ws-security.must-understand works only if security.enable.streaming is true
+    * [CXF-8945] - [JAX-WS] The client out interceptor chain is not called in case of oneway operation
+    * [CXF-8955] - Custom timeout with Message.RECEIVE_TIMEOUT not working with hc5 / hc
+    * [CXF-8959] - Detect order dependent flakiness in AttachmentUtilTest.java in core module
+    * [CXF-8964] - Update Bouncycastle from unsupported xxx-jdk15on to xxx-jdk18on
+    * [CXF-8965] - Apache CXF Netty Integration, URI not encoded
+
+
+** New Feature
+    * [CXF-8911] - Allow creating a custom CXFHttpAsyncResponseConsumer
+
+
+** Improvement
+    * [CXF-8928] - Reduce code quality warnings in generated code
+    * [CXF-8953] - Better support of the HTTPS protocol versions used by client/server conduits
+    * [CXF-8968] - OpenTelemetryClientFeature cannot be used as a CDI bean unless it has a no-args constructor
+
+
+
+
+
